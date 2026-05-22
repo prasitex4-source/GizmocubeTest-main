@@ -415,6 +415,9 @@ MonoBehaviour:
   Size: 25
   Pos: {x: 0, y: 0, z: 0}
   StaticObject: {fileID: 3979112113922556456, guid: e367402a9f7007b45a4da6872842e146, type: 3}
+  DynamicObject: {fileID: 7941987607356752894, guid: 4d19ebda4718f974481c9dfee13a3d63, type: 3}
+  Vel: 0.1
+  dir: {x: 1, y: 1, z: 0}
 --- !u!4 &1571180807
 Transform:
   m_ObjectHideFlags: 0
