@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -191,34 +192,33 @@ public class Octreenode
             CubeSpawner.instance.AddEntity(Sphere, Figures.Esfera);
         }
   
-        int TotalEntities = 0;
-
-        foreach(Octreenode Iter in octreeNodes)
+        if (octreeNodes.Count > 0)
         {
-            TotalEntities += Iter.GetNumEntities(); 
-        }
+            int TotalEntities = 0;
 
-        if(TotalEntities < 4)
-        {
             foreach(Octreenode Iter in octreeNodes)
             {
-                foreach (GameObject Cubos in Iter.GetAllCubes())
-                {
-                    CubeSpawner.instance.AddEntity(Cubos,Figures.Cubo); 
-                }
-                
-                foreach (GameObject Sfera in Iter.GetAllSpheres())
-                {
-                    CubeSpawner.instance.AddEntity(Sfera,Figures.Esfera); 
-                }
+                TotalEntities += Iter.GetNumEntities(); 
             }
-            octreeNodes.Clear();
-            
-        }
-        
-        
 
-
+            if(TotalEntities < 4 && TotalEntities != 0)
+            {
+                foreach(Octreenode Iter in octreeNodes)
+                {
+                    foreach (GameObject Cubos in Iter.GetAllCubes().ToList())
+                    {
+                        CubeSpawner.instance.AddEntity(Cubos,Figures.Cubo); 
+                    }
+                    
+                    foreach (GameObject Sfera in Iter.GetAllSpheres().ToList())
+                    {
+                        CubeSpawner.instance.AddEntity(Sfera,Figures.Esfera); 
+                    }
+                }
+                octreeNodes.Clear();
+                
+            }
+            }
 
     }   
 
